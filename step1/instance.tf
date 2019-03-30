@@ -17,7 +17,7 @@ resource "aws_instance" "awx" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "${var.user}"
-      private_key = "${file("/root/.ssh/tower.pem")}"
+      private_key = "${file(var.ssh_key_location)}"
     }
   }
 
@@ -26,7 +26,7 @@ resource "aws_instance" "awx" {
       host        = "${self.public_ip}"
       type        = "ssh"
       user        = "${var.user}"
-      private_key = "${file("/root/.ssh/tower.pem")}"
+      private_key = "${file(var.ssh_key_location)}"
     }
 
     inline = [
