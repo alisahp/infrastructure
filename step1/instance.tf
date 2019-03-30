@@ -3,9 +3,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "awx" {
-  instance_type               = "t2.medium"
-  ami                         = "ami-0ff760d16d9497662"
-  key_name                    = "tower"
+  instance_type               = "${var.instance_type}"
+  ami                         = "${var.ami}"
+  key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
 
   provisioner "file" {
