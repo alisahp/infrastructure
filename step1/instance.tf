@@ -16,7 +16,7 @@ resource "aws_instance" "awx" {
     connection {
       host        = "${self.public_ip}"
       type        = "ssh"
-      user        = "centos"
+      user        = "${var.user}"
       private_key = "${file("/root/.ssh/tower.pem")}"
     }
   }
@@ -25,7 +25,7 @@ resource "aws_instance" "awx" {
     connection {
       host        = "${self.public_ip}"
       type        = "ssh"
-      user        = "centos"
+      user        = "${var.user}"
       private_key = "${file("/root/.ssh/tower.pem")}"
     }
 
