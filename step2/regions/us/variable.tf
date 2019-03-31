@@ -1,0 +1,14 @@
+variable "region" {}
+variable  "ami_centos" {}
+variable  "ami_ubuntu" {}
+variable  "ami_debian" {}
+variable  "min_size_centos" {}
+variable  "max_size_centos" {}
+variable  "min_size_ubuntu" {}
+variable  "max_size_ubuntu" {}
+variable  "min_size_debian" {}
+variable  "max_size_debian" {}
+variable  "subnet" {}
+variable  "instance_type_centos" {}
+variable  "instance_type_ubuntu" {}
+variable  "instance_type_debian" {}
