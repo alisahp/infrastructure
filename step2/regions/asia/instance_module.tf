@@ -12,6 +12,8 @@ module "centos" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]         
   health_check_type   = "EC2"
+  key_name	      = "${var.key_name}"
+  security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }
 module "ubuntu" {
   name                = "ubuntu"
@@ -24,6 +26,8 @@ module "ubuntu" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
+  key_name	      = "${var.key_name}"
+  security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }
 module "debian" {
   name                = "debian"
@@ -36,4 +40,20 @@ module "debian" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
+  key_name	      = "${var.key_name}"
+  security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
+}
+module "windows" {
+  name                = "windows" 
+  source              = "terraform-aws-modules/autoscaling/aws"
+  lc_name             = "windows"
+  image_id            = "${var.ami_windows}"
+  instance_type       = "${var.instance_type_windows}"
+  min_size            = "${var.min_size_windows}"
+  max_size            = "${var.max_size_windows}"
+  desired_capacity    = "2"
+  vpc_zone_identifier = ["${var.subnet}"]
+  health_check_type   = "EC2"
+  key_name	      = "${var.key_name}"
+  security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }

@@ -19,3 +19,10 @@ ami_debian		=	"ami-072c9249a8e58f9db"
 instance_type_debian	=	"t2.micro"
 min_size_debian		=	2
 max_size_debian		=	3
+
+ami_windows             =       "ami-035d23ab461a09ab6"
+vpc_id                  =       "vpc-ca45d3a2"
+key_name                =       "terraform"
+min_size_windows        =       2
+max_size_windows        =       3
+instance_type_windows   =       "t2.micro"

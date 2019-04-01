@@ -12,3 +12,9 @@ variable  "subnet" {}
 variable  "instance_type_centos" {}
 variable  "instance_type_ubuntu" {}
 variable  "instance_type_debian" {}
+variable  "key_name" {}
+variable  "instance_type_windows" {}
+variable  "min_size_windows" {}
+variable  "max_size_windows" {}
+variable  "ami_windows" {}
+variable  "vpc_id" {}
