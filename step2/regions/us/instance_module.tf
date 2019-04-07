@@ -1,20 +1,26 @@
-provider "aws"{
+provider "aws" {
   region = "${var.region}"
 }
+
+data "template_file" "init" {
+  template = "${file("${path.module}/userdata")}"
+}
+
 module "centos" {
   name                = "centos"
   source              = "terraform-aws-modules/autoscaling/aws"
   lc_name             = "centos"
-  image_id            = "${var.ami_centos}"                   
+  image_id            = "${var.ami_centos}"
   instance_type       = "${var.instance_type_centos}"
   min_size            = "${var.min_size_centos}"
-  max_size            = "${var.max_size_centos}"   
+  max_size            = "${var.max_size_centos}"
   desired_capacity    = "2"
-  vpc_zone_identifier = ["${var.subnet}"]         
+  vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
-  key_name	      = "${var.key_name}"
+  key_name            = "${var.key_name}"
   security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }
+
 module "ubuntu" {
   name                = "ubuntu"
   source              = "terraform-aws-modules/autoscaling/aws"
@@ -26,9 +32,11 @@ module "ubuntu" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
-  key_name	      = "${var.key_name}"
+  key_name            = "${var.key_name}"
   security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
+  user_data           = "${data.template_file.init.rendered}"
 }
+
 module "debian" {
   name                = "debian"
   source              = "terraform-aws-modules/autoscaling/aws"
@@ -40,11 +48,12 @@ module "debian" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
-  key_name	      = "${var.key_name}"
+  key_name            = "${var.key_name}"
   security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }
+
 module "windows" {
-  name                = "windows" 
+  name                = "windows"
   source              = "terraform-aws-modules/autoscaling/aws"
   lc_name             = "windows"
   image_id            = "${var.ami_windows}"
@@ -54,6 +63,6 @@ module "windows" {
   desired_capacity    = "2"
   vpc_zone_identifier = ["${var.subnet}"]
   health_check_type   = "EC2"
-  key_name	      = "${var.key_name}"
+  key_name            = "${var.key_name}"
   security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
 }
