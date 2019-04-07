@@ -5,3 +5,4 @@ vpc_id			=	"vpc-908caaf6"
 user			=	"centos"
 ssh_key_location	=	"/root/.ssh/id_rsa"        #Import pub key pair to aws as "terraform"
 zone_id			=	"Z32OHGRMBVZ9LR"	   #Add hosted DNS zone ID here
+domain			=	"acirrustech.com"
