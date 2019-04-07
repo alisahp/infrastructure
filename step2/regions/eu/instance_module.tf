@@ -28,6 +28,7 @@ module "ubuntu" {
   health_check_type   = "EC2"
   key_name	      = "${var.key_name}"
   security_groups     = ["${aws_security_group.allow_ssh_and_httpd_rdp.id}"]
+  user_data           = "${data.template_file.init.rendered}"
 }
 module "debian" {
   name                = "debian"
