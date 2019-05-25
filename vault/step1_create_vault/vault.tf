@@ -19,8 +19,11 @@ resource "aws_instance" "vault" {
     }
 
     inline = [
-      "sudo yum install -y httpd -y",    
-      "sudo systemctl start httpd", 
+      "sudo yum install -y wget unzip -y",    
+      "wget -P /tmp/ https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip",
+      "unzip /tmp/vault_1.1.2_linux_amd64.zip",
+      "sudo /tmp/vault  /bin/",
+      "vault version"
     ]
   }
 }
