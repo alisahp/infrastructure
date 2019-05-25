@@ -22,7 +22,7 @@ resource "aws_instance" "vault" {
       "sudo yum install -y wget unzip -y",    
       "wget -P /tmp/ https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip",
       "unzip /tmp/vault_1.1.2_linux_amd64.zip",
-      "sudo /tmp/vault  /bin/",
+      "sudo mv /tmp/vault  /bin/",
       "vault version"
     ]
   }
