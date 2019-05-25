@@ -9,28 +9,6 @@ resource "aws_instance" "jenkins" {
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
 
-  provisioner "file" {
-    source      = "vault.service"
-    destination = "/tmp/vault.service"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-    }
-  }
-  provisioner "file" {
-    source      = "vault.hcl"
-    destination = "/tmp/vault.hcl"
-
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-    }
-  }
 
   provisioner "remote-exec" {
     connection {
@@ -49,6 +27,6 @@ resource "aws_instance" "jenkins" {
     ]
   }
   tags = {
-    Name = "Vault"
+    Name = "Jenkins"
   }
 }
