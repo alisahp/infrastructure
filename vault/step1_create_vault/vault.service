@@ -11,7 +11,7 @@ PrivateDevices=yes
 SecureBits=keep-caps
 AmbientCapabilities=CAP_IPC_LOCK
 NoNewPrivileges=yes
-ExecStart=/usr/local/bin/vault server -config=/etc/vault/config.hcl
+ExecStart=/usr/local/bin/vault server -config=/etc/vault/vault.hcl
 ExecReload=/bin/kill --signal HUP 
 KillMode=process
 KillSignal=SIGINT
