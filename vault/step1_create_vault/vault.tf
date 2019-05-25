@@ -11,7 +11,7 @@ resource "aws_instance" "vault" {
 
   provisioner "file" {
     source      = "vault.service"
-    destination = "/tmp/"
+    destination = "/tmp/vault.service"
 
     connection {
       host        = "${self.public_ip}"
@@ -22,7 +22,7 @@ resource "aws_instance" "vault" {
   }
   provisioner "file" {
     source      = "vault.hcl"
-    destination = "/tmp/"
+    destination = "/tmp/vault.hcl"
 
     connection {
       host        = "${self.public_ip}"
