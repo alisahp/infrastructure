@@ -7,6 +7,6 @@ output "username"{
 output "password"{
   value = "username: admin"
 }
-output "To Do"{
+output "To_Do"{
   value = "Please reset username and password"
 }
