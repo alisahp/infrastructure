@@ -51,7 +51,8 @@ resource "aws_instance" "vault" {
       "sudo /tmp/vault.hcl /etc/vault/",
       "sudo systemctl daemon-reload",
       "sudo systemctl enable --now vault",
-      "sudo systemctl restart vault"
+      "sudo systemctl restart vault",
+      "sudo cat /etc/vault/init.file"
     ]
   }
 }
