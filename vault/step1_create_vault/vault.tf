@@ -54,4 +54,7 @@ resource "aws_instance" "vault" {
       "sudo systemctl restart vault",
     ]
   }
+  tags{
+    Name = "Vault"
+  }
 }
