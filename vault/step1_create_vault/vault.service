@@ -1,7 +1,7 @@
 [Unit]
 Requires=network-online.target
 After=network-online.target
-ConditionFileNotEmpty=/etc/vault/config.hcl
+ConditionFileNotEmpty=/etc/vault/vault.hcl
 
 [Service]
 ProtectSystem=full
