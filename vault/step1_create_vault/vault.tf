@@ -9,6 +9,28 @@ resource "aws_instance" "vault" {
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_vault"]
 
+  provisioner "file" {
+    source      = "vault.service"
+    destination = "/tmp/"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  }
+  provisioner "file" {
+    source      = "vault.hcl"
+    destination = "/tmp/"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  }
 
   provisioner "remote-exec" {
     connection {
@@ -23,7 +45,13 @@ resource "aws_instance" "vault" {
       "wget -P /tmp/ https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip",
       "unzip /tmp/vault_1.1.2_linux_amd64.zip",
       "sudo mv ~/vault  /bin/",
-      "vault version"
+      "vault version",
+      "sudo mkdir /etc/vault",
+      "sudo /tmp/vault.service /etc/systemd/system/",
+      "sudo /tmp/vault.hcl /etc/vault/",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl enable --now vault",
+      "sudo systemctl restart vault"
     ]
   }
 }
