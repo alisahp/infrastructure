@@ -20,6 +20,17 @@ resource "aws_instance" "elk" {
       private_key = "${file(var.ssh_key_location)}"
       }
     }
+  provisioner "file" {
+    source      = "logstash.repo"
+    destination = "/tmp/logstash.repo"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+      }
+    }
   provisioner "remote-exec" {
     connection {
       host        = "${self.public_ip}"
@@ -31,6 +42,7 @@ resource "aws_instance" "elk" {
     inline = [
       "sudo yum install java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
+      "sudo mv /tmp/logstash.repo /etc/yum.repos.d/logstash.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
       "sudo yum -y install elasticsearch",
@@ -38,7 +50,12 @@ resource "aws_instance" "elk" {
       "sudo systemctl enable elasticsearch",
       "sudo yum -y install kibana",
       "sudo systemctl start kibana",
-      "sudo systemctl enable kibana"
+      "sudo systemctl enable kibana",
+      "sudo yum -y install logstash",
+      "sudo systemctl restart logstash",
+      "sudo systemctl enable logstash",
+      "curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip",
+      "unzip beats-dashboards-*.zip"
     ]
   }
   tags = {
