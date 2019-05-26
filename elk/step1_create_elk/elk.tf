@@ -41,7 +41,7 @@ resource "aws_instance" "elk" {
 
     inline = [
       #Install java
-      "sudo yum install unzip java-1.8.0-openjdk-devel curl -y",
+      "sudo yum install unzip wget java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
