@@ -40,7 +40,7 @@ resource "aws_instance" "elk" {
     }
 
     inline = [
-      "sudo yum install java-1.8.0-openjdk-devel curl -y",
+      "sudo yum install unzip java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
       "sudo mv /tmp/logstash.repo /etc/yum.repos.d/logstash.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
