@@ -11,7 +11,7 @@ resource "aws_security_group" "allow_ssh_and_elk" {
   }
   ingress {
     from_port   = 9200
-    to_port     = 8200
+    to_port     = 9300
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
