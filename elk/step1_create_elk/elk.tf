@@ -61,6 +61,7 @@ resource "aws_instance" "elk" {
       "sudo yum -y install logstash",
       "sudo systemctl restart logstash",
       "sudo systemctl enable logstash",
+      "sudo mkdir /etc/pki/tls/private"
       "sudo cd /etc/pki/tls && sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt",
     ]
   }
