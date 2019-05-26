@@ -62,7 +62,7 @@ resource "aws_instance" "elk" {
       "sudo systemctl restart logstash",
       "sudo systemctl enable logstash",
       "sudo mkdir /etc/pki/tls/private -p",
-      "sudo cd /etc/pki/tls && sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt",
+      "sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout /etc/pki/tls/private/logstash-forwarder.key -out /etc/pki/tls/certs/logstash-forwarder.crt",
     ]
   }
 
