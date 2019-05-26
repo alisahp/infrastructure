@@ -42,7 +42,6 @@ resource "aws_instance" "elk" {
     inline = [
       "sudo yum install unzip java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
-      "sudo mv /tmp/logstash.repo /etc/yum.repos.d/logstash.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
       "sudo yum -y install elasticsearch",
@@ -51,9 +50,46 @@ resource "aws_instance" "elk" {
       "sudo yum -y install kibana",
       "sudo systemctl start kibana",
       "sudo systemctl enable kibana",
+
+# This line below sets up logstash
+      "sudo mv /tmp/logstash.repo /etc/yum.repos.d/logstash.repo",
       "sudo yum -y install logstash",
       "sudo systemctl restart logstash",
       "sudo systemctl enable logstash",
+      "sudo /etc/pki/tls && sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt",
+    ]
+  }
+  provisioner "file" {
+    source      = "02-beats-input.conf"
+    destination = "/tmp/02-beats-input.conf"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  }
+  provisioner "remote-exec" {
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+  }
+    inline = [
+      "sudo mv /tmp/02-beats-input.conf /etc/logstash/conf.d"
+    ]
+  }
+  provisioner "remote-exec" {
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+    inline = [
+      "sudo mv /tmp/02-beats-input.conf /etc/logstash/conf.d",
       "curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip",
       "unzip beats-dashboards-1.1.0.zip",
       "sh ~/beats-dashboards-1.1.0/load.sh",
