@@ -137,6 +137,7 @@ resource "aws_instance" "elk" {
       "curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip",
       "unzip beats-dashboards-1.1.0.zip",
       "sh ~/beats-dashboards-1.1.0/load.sh",
+      "sudo sh /home/centos/beats-dashboards-1.1.0/load.sh",
       "wget  https://gist.githubusercontent.com/thisismitch/3429023e8438cc25b86c/raw/d8c479e2a1adcea8b1fe86570e42abab0f10f364/filebeat-index-template.json",
       "curl -XPUT 'http://localhost:9200/_template/filebeat?pretty' -d@filebeat-index-template.json",
     ]
