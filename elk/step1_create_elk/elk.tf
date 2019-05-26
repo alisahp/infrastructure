@@ -29,12 +29,12 @@ resource "aws_instance" "elk" {
     }
 
     inline = [
-      "wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm"",
+      "sudo yum install java-1.8.0-openjdk-devel curl -y",
+      "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
       "sudo yum -y install elasticsearch",
-      "sudo systemctl start elasticsearch"
-      "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo"
+      "sudo systemctl start elasticsearch",
     ]
   }
   tags = {
