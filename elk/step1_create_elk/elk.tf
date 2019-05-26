@@ -55,7 +55,9 @@ resource "aws_instance" "elk" {
       "sudo systemctl restart logstash",
       "sudo systemctl enable logstash",
       "curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip",
-      "unzip beats-dashboards-*.zip"
+      "unzip beats-dashboards-*.zip",
+      "cd beats-dashboards-*",
+      "./load.sh"
     ]
   }
   tags = {
