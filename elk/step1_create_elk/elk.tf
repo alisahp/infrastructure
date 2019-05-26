@@ -19,17 +19,19 @@ resource "aws_instance" "elk" {
     }
 
     inline = [
-      "sudo yum install -y wget unzip -y",    
-      "wget -P /tmp/ https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip",
-      "unzip /tmp/vault_1.1.2_linux_amd64.zip",
-      "sudo mv ~/vault  /bin/",
-      "vault version",
-      "sudo mkdir /etc/vault",
-      "sudo mv /tmp/vault.service /etc/systemd/system/",
-      "sudo mv /tmp/vault.hcl /etc/vault/",
-      "sudo systemctl daemon-reload",
-      "sudo systemctl enable --now vault",
-      "sudo systemctl restart vault",
+      "wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm"",
+      "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
+      "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch"
+      "echo '[elasticsearch-2.x]
+name=Elasticsearch repository for 2.x packages
+baseurl=http://packages.elastic.co/elasticsearch/2.x/centos
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+' | sudo tee /etc/yum.repos.d/elasticsearch.repo",
+    "sudo yum -y install elasticsearch",
+    "sudo systemctl start elasticsearch"
+
     ]
   }
   tags = {
