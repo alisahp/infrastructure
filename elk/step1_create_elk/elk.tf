@@ -41,7 +41,7 @@ resource "aws_instance" "elk" {
 
     inline = [
       #Install java
-      "sudo yum install unzip wget java-1.8.0-openjdk-devel curl -y",
+      "sudo yum install unzip wget httpd java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
@@ -60,9 +60,11 @@ resource "aws_instance" "elk" {
       # Install logstash
       "sudo yum -y install logstash",
       "sudo systemctl restart logstash",
+      "sudo systemctl restart httpd",
       "sudo systemctl enable logstash",
       "sudo mkdir /etc/pki/tls/private -p",
       "sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout /etc/pki/tls/private/logstash-forwarder.key -out /etc/pki/tls/certs/logstash-forwarder.crt",
+      "sudo cp /etc/pki/tls/certs/logstash-forwarder.crt /var/www/html/index.html"
     ]
   }
 
