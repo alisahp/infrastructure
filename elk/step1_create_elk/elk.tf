@@ -40,6 +40,7 @@ resource "aws_instance" "elk" {
     }
 
     inline = [
+      #Install java
       "sudo yum install unzip java-1.8.0-openjdk-devel curl -y",
       "sudo mv /tmp/elk.repo /etc/yum.repos.d/elk.repo",
       "sudo yum -y localinstall jdk-8u73-linux-x64.rpm",
@@ -47,21 +48,55 @@ resource "aws_instance" "elk" {
       "sudo yum -y install elasticsearch",
       "sudo systemctl start elasticsearch",
       "sudo systemctl enable elasticsearch",
+
+      ## install kibana
       "sudo yum -y install kibana",
       "sudo systemctl start kibana",
       "sudo systemctl enable kibana",
-
-# This line below sets up logstash
       "sudo mv /tmp/logstash.repo /etc/yum.repos.d/logstash.repo",
+
+
+#----------------------------------------------------------------------------------------------
+      # Install logstash
       "sudo yum -y install logstash",
       "sudo systemctl restart logstash",
       "sudo systemctl enable logstash",
       "sudo /etc/pki/tls && sudo openssl req -subj '/CN=elk.acirrustech.com/' -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt",
     ]
   }
+
+
+  # logstash 02 file 
   provisioner "file" {
     source      = "02-beats-input.conf"
     destination = "/tmp/02-beats-input.conf"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  }
+  
+  # logstash 10 file 
+  provisioner "file" {
+    source      = "10-syslog-filter.conf"
+    destination = "/tmp/10-syslog-filter.conf"
+
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  }
+  
+  
+  # logstash 30 file 
+  provisioner "file" {
+    source      = "30-elasticsearch-output.conf"
+    destination = "/tmp/30-elasticsearch-output.conf"
 
     connection {
       host        = "${self.public_ip}"
@@ -78,9 +113,15 @@ resource "aws_instance" "elk" {
       private_key = "${file(var.ssh_key_location)}"
   }
     inline = [
-      "sudo mv /tmp/02-beats-input.conf /etc/logstash/conf.d"
+      "sudo mv /tmp/02-beats-input.conf /etc/logstash/conf.d",
+      "sudo mv /tmp/10-syslog-filter.conf /etc/logstash/conf.d",
+      "sudo mv /tmp/30-elasticsearch-output.conf /etc/logstash/conf.d",
+      "sudo service logstash configtest",
+      "sudo systemctl restart logstash",
+      "sudo chkconfig logstash on",
     ]
   }
+#----------------------------------------------------------------------------------------------
   provisioner "remote-exec" {
     connection {
       host        = "${self.public_ip}"
