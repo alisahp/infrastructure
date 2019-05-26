@@ -35,6 +35,7 @@ resource "aws_instance" "elk" {
       "sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch",
       "sudo yum -y install elasticsearch",
       "sudo systemctl start elasticsearch",
+      "sudo systemctl enable elasticsearch"
     ]
   }
   tags = {
