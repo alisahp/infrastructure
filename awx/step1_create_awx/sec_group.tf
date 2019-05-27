@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow_ssh_and_awx" {
   name        = "allow_ssh_and_awx"
-  description = "Allow SSH and HTTPD"
+  description = "Allow SSH and awx"
   vpc_id      = "${var.vpc_id}"
 
   ingress {
