@@ -1,5 +1,5 @@
-
 resource "aws_instance" "jenkins" {
+  depends_on                  = ["aws_key_pair.jenkins"]
   instance_type               = "${var.instance_type}"
   ami                         = "${var.ami}"
   key_name                    = "${var.key_name}"
@@ -24,26 +24,6 @@ resource "aws_instance" "jenkins" {
   }
 
   tags = {
-    Name = "Jenkins"
-  }
-}
-
-resource "null_resource" "jenkins_passwd" {
-  triggers = {
-    always_run = "${timestamp()}"
-  }
-
-  depends_on = ["aws_route53_record.jenkins"]
-
-  provisioner "remote-exec" {
-    connection {
-      host        = "jenkins.acirrustech.com"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-    }
-  inline = [
-    "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"  
-   ]
+    Name = "Jenkins Don't delete please"
   }
 }
