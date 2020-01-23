@@ -1,5 +1,5 @@
 instance_type		=	"t2.medium"
-key_name	    	=	"terraform"
+key_name	    	=	"jenkins"
 ami		        	=	"ami-02eac2c0129f6376b"    #Use Centos7  image
 vpc_id		    	=	"vpc-1471ad6e"
 user		    	=	"centos"

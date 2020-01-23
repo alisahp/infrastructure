@@ -9,7 +9,6 @@ resource "aws_instance" "jenkins" {
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
 
-
   provisioner "remote-exec" {
     connection {
       host        = "${self.public_ip}"
@@ -23,10 +22,31 @@ resource "aws_instance" "jenkins" {
       "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
       "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
       "sudo yum install jenkins -y",
-      "sudo systemctl start jenkins"
+      "sudo systemctl start jenkins",
     ]
   }
+
   tags = {
     Name = "Jenkins"
+  }
+}
+
+resource "null_resource" "jenkins_passwd" {
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+
+  depends_on = ["aws_route53_record.jenkins"]
+
+  provisioner "remote-exec" {
+    connection {
+      host        = "jenkins.acirrustech.com"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+  inline = [
+    "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"  
+   ]
   }
 }
