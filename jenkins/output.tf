@@ -5,3 +5,7 @@ output "domain" {
 output "To_Do" {
   value = "Please reset username and password"
 }
+
+output "jenkins_passwd" {
+  value = "5 lines above jenkins passwd"
+}
