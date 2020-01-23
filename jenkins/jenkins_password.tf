@@ -7,7 +7,7 @@ resource "null_resource" "jenkins_passwd" {
 
   provisioner "remote-exec" {
     connection {
-      host        = "jenkins.acirrustech.com"
+      host        = "jenkins.${var.domain}"
       type        = "ssh"
       user        = "${var.user}"
       private_key = "${file(var.ssh_key_location)}"
