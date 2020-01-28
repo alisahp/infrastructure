@@ -59,7 +59,7 @@ resource "aws_instance" "jenkins" {
         "unzip /tmp/packer_1.5.1_linux_amd64.zip",
         "sudo rm  /sbin/packer &>/dev/null  ",
         "sudo mv packer /bin",
-        "packer version"
+        "packer version",
         
 
         "# These commands below used for disabling host key verification",
