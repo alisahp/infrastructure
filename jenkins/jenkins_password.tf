@@ -2,7 +2,6 @@ resource "null_resource" "jenkins_passwd" {
   triggers = {
     always_run = "${timestamp()}"
   }
-
   depends_on = ["aws_route53_record.jenkins"]
 
  provisioner "remote-exec" {
@@ -16,10 +15,6 @@ resource "null_resource" "jenkins_passwd" {
     inline = [
       "sudo cat /var/lib/jenkins/secrets/initialAdminPassword",
       "sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
-
-
-
-
     ]
   }
 }
