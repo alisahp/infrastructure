@@ -50,13 +50,16 @@ resource "aws_instance" "jenkins" {
 	"sudo chmod 600 /var/lib/jenkins/.ssh",
 	"sudo cp /tmp/id_rsa*	/var/lib/jenkins/.ssh",
 	"sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
-	"sudo yum install git wget -y",
-	"wget -P /tmp https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip ",
-	"unzip /tmp/packer_1.5.1_linux_amd64.zip",
-	"sudo rm  /sbin/packer ",
-	"sudo mv /tmp/packer /bin",
-	"sudo chmod 777 /var/run/docker.sock",	
 	"sudo chmod +x /var/lib/jenkins/.ssh", 
+	"sudo chmod 777 /var/run/docker.sock",	
+
+        "# Installs packer",
+        "sudo yum install wget unzip -y",
+        "wget -P /tmp https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip",
+        "unzip /tmp/packer_1.5.1_linux_amd64.zip",
+        "sudo rm  /sbin/packer &>/dev/null  ",
+        "sudo mv packer /bin",
+        "packer version"
         
 
         "# These commands below used for disabling host key verification",
