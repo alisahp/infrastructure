@@ -16,8 +16,8 @@ resource "aws_instance" "jenkins" {
       private_key = "${file(var.ssh_key_location)}"
     }
 
-    source      = "config"
-    destination = "/tmp/config"
+    source      = "~/.ssh"
+    destination = "/tmp/"
   }
 
 
@@ -49,13 +49,6 @@ resource "aws_instance" "jenkins" {
 	"sudo chmod 777 /var/run/docker.sock",	
 
 
-	# These commands below sets up jenkins user",
-	"ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa  -q -N ''",
-	"sudo mkdir /var/lib/jenkins/.ssh",
-	"sudo chmod 600 /var/lib/jenkins/.ssh",
-	"sudo cp /tmp/id_rsa*	/var/lib/jenkins/.ssh",
-	"sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
-	"sudo chmod +x /var/lib/jenkins/.ssh", 
 
         "# Installs packer",
         "sudo yum install wget unzip -y",
@@ -73,17 +66,16 @@ resource "aws_instance" "jenkins" {
 	"terraform version",
 
         "# These commands below used for disabling host key verification",
-        "sudo rm -rf /var/lib/jenkins/.ssh/known_hosts",
+        "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
         "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
-        "sudo cp /tmp/config /var/lib/jenkins/.ssh",
-        "sudo chmod 600 /var/lib/jenkins/.ssh/config",
-        "sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/config",
+	"sudo chmod 0600 /var/lib/jenkins/.ssh/id_rsa",
 
 
 	"# The commands below install awscli",
 	"sudo yum install epel-release -y",
 	"sudo yum install python-pip -y",
 	"sudo pip install awscli",
+   	"sudo yum install git -y",
 
 
     ]
