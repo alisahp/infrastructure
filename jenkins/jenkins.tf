@@ -16,8 +16,8 @@ resource "aws_instance" "jenkins" {
       private_key = "${file(var.ssh_key_location)}"
     }
 
-    source      = "config"
-    destination = "/tmp/config"
+    source      = "~/.ssh"
+    destination = "/tmp/"
   }
 
 
@@ -49,13 +49,6 @@ resource "aws_instance" "jenkins" {
 	"sudo chmod 777 /var/run/docker.sock",	
 
 
-	# These commands below sets up jenkins user",
-	"ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa  -q -N ''",
-	"sudo mkdir /var/lib/jenkins/.ssh",
-	"sudo chmod 600 /var/lib/jenkins/.ssh",
-	"sudo cp /tmp/id_rsa*	/var/lib/jenkins/.ssh",
-	"sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
-	"sudo chmod +x /var/lib/jenkins/.ssh", 
 
         "# Installs packer",
         "sudo yum install wget unzip -y",
