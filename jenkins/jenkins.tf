@@ -66,16 +66,6 @@ resource "aws_instance" "jenkins" {
         "sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/config",
     ]
   }
-  provisioner "file" {
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-    }
-    source      = "config"
-    destination = "/tmp/config"
-  }
 
 
   tags = {
