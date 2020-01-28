@@ -66,17 +66,16 @@ resource "aws_instance" "jenkins" {
 	"terraform version",
 
         "# These commands below used for disabling host key verification",
-        "sudo rm -rf /var/lib/jenkins/.ssh/known_hosts",
+        "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
         "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
-        "sudo cp /tmp/config /var/lib/jenkins/.ssh",
-        "sudo chmod 600 /var/lib/jenkins/.ssh/config",
-        "sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/config",
+	"sudo chmod 0600 /var/lib/jenkins/.ssh/id_rsa",
 
 
 	"# The commands below install awscli",
 	"sudo yum install epel-release -y",
 	"sudo yum install python-pip -y",
 	"sudo pip install awscli",
+   	"sudo yum install git -y",
 
 
     ]
