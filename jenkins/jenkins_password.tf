@@ -15,6 +15,7 @@ resource "null_resource" "jenkins_passwd" {
 
     inline = [
       "sudo cat /var/lib/jenkins/secrets/initialAdminPassword",
+      "sudo cat /var/lib/jenkins/.ssh/id_rsa.pub"
     ]
   }
 }
