@@ -34,8 +34,11 @@ resource "aws_instance" "jenkins" {
 	"sudo cp /tmp/id_rsa*	/var/lib/jenkins/.ssh",
 	"sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
 	"sudo yum install git -y",
-	
-	
+	"wget -P https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip  /tmp",
+	"unzip /tmp/packer_1.5.1_linux_amd64.zip",
+	"sudo rm  /sbin/packer ",
+	"sudo mv /tmp/packer /bin",
+	"sudo chmod 777 /var/run/docker.sock"	
     ]
   }
 
