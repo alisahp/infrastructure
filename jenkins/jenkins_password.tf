@@ -5,7 +5,7 @@ resource "null_resource" "jenkins_passwd" {
 
   depends_on = ["aws_route53_record.jenkins"]
 
-  provisioner "remote-exec" {
+ provisioner "remote-exec" {
     connection {
       host        = "jenkins.${var.domain}"
       type        = "ssh"
@@ -15,7 +15,7 @@ resource "null_resource" "jenkins_passwd" {
 
     inline = [
       "sudo cat /var/lib/jenkins/secrets/initialAdminPassword",
-      "sudo cat /var/lib/jenkins/.ssh/id_rsa.pub"
+      "sudo cat /var/lib/jenkins/.ssh/id_rsa.pub",
     ]
   }
 }

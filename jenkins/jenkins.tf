@@ -7,6 +7,21 @@ resource "aws_instance" "jenkins" {
   security_groups             = ["allow_ssh_and_jenkins"]
 
 
+
+  provisioner "file" {
+   connection {
+      host        = "jenkins.${var.domain}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+
+    source      = "config"
+    destination = "/tmp/config"
+  }
+
+
+
   provisioner "remote-exec" {
     connection {
       host        = "${self.public_ip}"
@@ -14,6 +29,7 @@ resource "aws_instance" "jenkins" {
       user        = "${var.user}"
       private_key = "${file(var.ssh_key_location)}"
     }
+    
 
     inline = [
 	"sudo yum install java-1.8.0-openjdk-devel curl -y",
@@ -38,9 +54,29 @@ resource "aws_instance" "jenkins" {
 	"unzip /tmp/packer_1.5.1_linux_amd64.zip",
 	"sudo rm  /sbin/packer ",
 	"sudo mv /tmp/packer /bin",
-	"sudo chmod 777 /var/run/docker.sock"	
+	"sudo chmod 777 /var/run/docker.sock",	
+	"sudo chmod +x /var/lib/jenkins/.ssh", 
+        
+
+        "# These commands below used for disabling host key verification",
+        "sudo rm -rf /var/lib/jenkins/.ssh/known_hosts",
+        "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
+        "sudo cp /tmp/config /var/lib/jenkins/.ssh",
+        "sudo chmod 600 /var/lib/jenkins/.ssh/config",
+        "sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/config",
     ]
   }
+  provisioner "file" {
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+    }
+    source      = "config"
+    destination = "/tmp/config"
+  }
+
 
   tags = {
     Name = "Jenkins Don't delete please"
