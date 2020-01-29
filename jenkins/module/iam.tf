@@ -1,5 +1,5 @@
-resource "aws_iam_role" "jenkins_admin_worker1" {
-  name = "jenkins_admin_worker1"
+resource "aws_iam_role" "jenkins_admin" {
+  name = "jenkins_admin"
 
   assume_role_policy = <<EOF
 {
@@ -22,14 +22,14 @@ EOF
   }
 }
 
-resource "aws_iam_instance_profile" "jenkins_profile_worker1" {
-  name = "jenkins_profile_worker1"
-  role = "${aws_iam_role.jenkins_admin_worker1.name}"
+resource "aws_iam_instance_profile" "jenkins_profile" {
+  name = "jenkins_profile"
+  role = "${aws_iam_role.jenkins_admin.name}"
 }
 
-resource "aws_iam_role_policy" "jenkins_admin_policy_worker1" {
-  name = "jenkins_admin_policy_worker1"
-  role = "${aws_iam_role.jenkins_admin_worker1.id}"
+resource "aws_iam_role_policy" "jenkins_admin_policy" {
+  name = "jenkins_admin_policy"
+  role = "${aws_iam_role.jenkins_admin.id}"
 
   policy = <<EOF
 {

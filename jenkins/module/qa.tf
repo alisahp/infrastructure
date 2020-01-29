@@ -1,24 +1,10 @@
-data "aws_ami" "centos" {
-  most_recent = true
-  owners      = ["679593333241"]
-
-  filter {
-    name   = "state"
-    values = ["available"]
-  }
-
-  filter {
-    name   = "name"
-    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
-  }
-}
-
-resource "aws_instance" "dev" {
+resource "aws_instance" "qa1" {
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
+ iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
 
   provisioner "file" {
     connection {
@@ -63,6 +49,6 @@ resource "aws_instance" "dev" {
   }
 
   tags = {
-    Name = "dev_jenkins"              
+    Name = "qa1"                    
   }
 }

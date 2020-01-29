@@ -1,10 +1,10 @@
-
-resource "aws_instance" "prod"            {
+resource "aws_instance" "stage1"           {
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
+  iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
 
   provisioner "file" {
     connection {
@@ -49,6 +49,6 @@ resource "aws_instance" "prod"            {
   }
 
   tags = {
-    Name = "prod_jenkins"    
+    Name = "stage1"           
   }
 }
