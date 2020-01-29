@@ -4,10 +4,11 @@
 1. Terraform 0.11.14
 
 ### Steps
-* clone Repo
-* cd infrastructure/jenkins/
-    * ls configurations      
-
+```
+git clone https://github.com/farrukh90/infrastructure.git
+cd infrastructure/jenkins/
+ls configurations
+```
 
 ### Region
 Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region. Change below items according to your own AWS account
@@ -15,6 +16,7 @@ Choose the region you would like to work with. In my case I chose to work with u
 
 ```
 vi configurations/YOUR_REGION/jenkins.tfvars
+
 s3_bucket                       =   "YOUR_BUCKET"         
 s3_folder_region                =   "YOUR_BUCKET_REGION"               
 vpc_id                          =   "YOUR_VPC_ID"            
