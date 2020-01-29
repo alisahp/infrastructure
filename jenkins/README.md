@@ -12,7 +12,7 @@
     * ls configurations      
 
 
-
+# Region
 Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region 
 * vi configurations/us-east-1/jenkins.tfvars
 * change Below items 
@@ -27,6 +27,7 @@ Choose the region you would like to work with. In my case I chose to work with u
 
 
 
+# Environment Setup
 Once above changes are done save the file and run 
 * source setenv.sh configurations/YOUR_REGION/jenkins.tfvars
 
@@ -35,5 +36,5 @@ It will set a proper backend.tf file for us. Next run (by changing region of cou
 * terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
 
-
+# Output
 The output should be similar to this
