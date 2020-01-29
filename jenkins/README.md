@@ -10,8 +10,7 @@
 
 
 ### Region
-Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region
-* change below items according to your own AWS account
+Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region. Change below items according to your own AWS account
 
 * vi configurations/us-east-1/jenkins.tfvars
 	* s3_bucket                       =   "acirrustech-iaac"         
