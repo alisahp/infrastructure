@@ -8,6 +8,8 @@
 * cd infrastructure/jenkins/
     * ls configurations      
 
+
+
 Choose the region you would like to work with in my case I chose to work with us-east-1. However this is not required you can choose any region 
 * vi configurations/us-east-1/jenkins.tfvars
 * change Below items 
@@ -17,6 +19,9 @@ Choose the region you would like to work with in my case I chose to work with us
 	* zone_id                         =   "Z32OHGRMBVZ9LR"       
 	* domain                          =   "acirrustech.com"
 	* region                          =   "us-east-1"
+
+
+
 
 
 Once above changes are done save the file and run 
