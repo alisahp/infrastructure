@@ -10,7 +10,7 @@
 
 
 
-Choose the region you would like to work with in my case I chose to work with us-east-1. However this is not required you can choose any region 
+Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region 
 * vi configurations/us-east-1/jenkins.tfvars
 * change Below items 
 	* s3_bucket                       =   "acirrustech-iaac"         
