@@ -38,4 +38,4 @@ It will set a proper backend.tf file for us. Next run (by changing region of cou
 
 ### Output
 The output should be similar to this
-![Output](/images/output.png)
+![Output](images/output.png)
