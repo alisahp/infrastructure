@@ -1,5 +1,5 @@
-# Jenkins Module
-![JenkinsLogo](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Jenkinslogo.png)
+
+![JenkinsLogo](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Jenkinslogo.png)      # Jenkins Module
 ### This module is used for creating Jenkins environment
 ## Prerequisites
 1. Terraform 0.11.14
