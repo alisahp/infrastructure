@@ -16,7 +16,7 @@ Choose the region you would like to work with. In my case I chose to work with u
 	* s3_bucket                        =   "YOUR_BUCKET"         
 	* s3_folder_region                =   "YOUR_BUCKET_REGION"               
 	* vpc_id                          =   "YOUR_VPC_ID"            
-	* zone_id                         =   "Z32OHGRMBVZ9LR"       
+	* zone_id                         =   "YOUR_Z32OHGRMBVZ9LR"       
 	* domain                          =   "YOUR_DOMAIN"
 	* region                          =   "YOUR_REGION"
 
