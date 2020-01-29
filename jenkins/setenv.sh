@@ -3,14 +3,14 @@ echo $0
 if [ "$0" = "$BASH_SOURCE" ]
 then
    echo "$0: Please source this file."
-   echo "e.g. source ./setenv configurations/data-rnd-us-vet1-v1"
+   echo "e.g. source ./setenv configurations/
    return 1
 fi
 
 if [ -z "$1" ]
 then
    echo "setenv: You must provide the name of the configuration file."
-   echo "e.g. source ./setenv configurations/data-rnd-us-vet1-v1"
+   echo "e.g. source ./setenv configurations/"
    return 1
 fi
 
