@@ -31,12 +31,16 @@ region                          =   "YOUR_REGION"
 
 ### Environment Setup
 Once above changes are done save the file and run 
-* source setenv.sh configurations/YOUR_REGION/jenkins.tfvars
+```
+source setenv.sh configurations/YOUR_REGION/jenkins.tfvars
+```
 
 It will set a proper backend.tf file for us. Next run (by changing region of course):
 
-* terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
+```
+terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
+```
 
 
 
