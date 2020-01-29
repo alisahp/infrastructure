@@ -6,6 +6,7 @@
 
 ### Steps
 ```
+<a href="https://asciinema.org/a/PMYmwwJPiR8Ali6mbcZdWSbf3" target="_blank"><img src="https://asciinema.org/a/PMYmwwJPiR8Ali6mbcZdWSbf3.svg" /></a>
 git clone https://github.com/farrukh90/infrastructure.git
 cd infrastructure/jenkins/
 ls configurations
