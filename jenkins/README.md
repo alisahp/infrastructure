@@ -37,4 +37,4 @@ It will set a proper backend.tf file for us. Next run (by changing region of cou
 
 
 ### Output
-![Output](images/output.png)
+![Output](https://github.com/farrukh90/terraform-aws-jenkins/blob/master/images/output.png)
