@@ -18,15 +18,14 @@ resource "aws_iam_role" "jenkins_admin_worker1" {
 EOF
 
   tags = {
-      tag-key = "tag-value"
+    tag-key = "tag-value"
   }
 }
+
 resource "aws_iam_instance_profile" "jenkins_profile_worker1" {
   name = "jenkins_profile_worker1"
   role = "${aws_iam_role.jenkins_admin_worker1.name}"
 }
-
-
 
 resource "aws_iam_role_policy" "jenkins_admin_policy_worker1" {
   name = "jenkins_admin_policy_worker1"

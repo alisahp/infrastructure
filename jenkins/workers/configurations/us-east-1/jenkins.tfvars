@@ -9,7 +9,6 @@ s3_tfstate_file                 =   "jenkins.tfstate"
 
 instance_type		            =	"t2.medium"
 key_name	    	            =	"jenkins"
-ami		        	            =	"ami-02eac2c0129f6376b"    #Use Centos7  image
 vpc_id		    	            =	"vpc-1471ad6e"
 user		    	            =	"centos"
 ssh_key_location	            =	"/root/.ssh/id_rsa"        #Import pub key pair to aws as "terraform"
