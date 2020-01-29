@@ -1,7 +1,10 @@
 # README.md
 
+
 # Jenkins Module
 ## This module is used for creating Jenkins environment
+## Prereuisites
+1. Terraform 0.11.14
 
 ### Steps
 * Clone Repo
