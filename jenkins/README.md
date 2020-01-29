@@ -20,9 +20,8 @@ Choose the region you would like to work with in my case I chose to work with us
 
 
 Once above changes are done save the file and run 
-* source setenv.sh configurations/YOUR_REGION/jenkins.tfvars
+** source setenv.sh configurations/YOUR_REGION/jenkins.tfvars*
 
-It will set a proper backend.tf file for us. 
+It will set a proper backend.tf file for us. Next run (by changing region of course):
 
-Next run (by changing region of course):
 * terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
