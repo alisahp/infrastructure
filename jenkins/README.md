@@ -26,6 +26,7 @@ region                          =   "YOUR_REGION"
 
 
 
+
 ### Environment Setup
 Once above changes are done save the file and run 
 * source setenv.sh configurations/YOUR_REGION/jenkins.tfvars
