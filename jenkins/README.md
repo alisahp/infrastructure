@@ -4,7 +4,7 @@
 1. Terraform 0.11.14
 
 ### Steps
-* Clone Repo
+* clone Repo
 * cd infrastructure/jenkins/
     * ls configurations      
 
