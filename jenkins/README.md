@@ -13,12 +13,12 @@
 Choose the region you would like to work with. In my case I chose to work with us-east-1. However this is not required you can choose any region. Change below items according to your own AWS account
 
 * vi configurations/YOUR_REGION/jenkins.tfvars
-	* s3_bucket                       =   "acirrustech-iaac"         
-	* s3_folder_region                =   "us-east-1"               
-	* vpc_id                          =   "vpc-1471ad6e"            
+	* s3_bucket                       =   "YOUR_BUCKET"         
+	* s3_folder_region                =   "YOUR_BUCKET_REGION"               
+	* vpc_id                          =   "YOUR_VPC_ID"            
 	* zone_id                         =   "Z32OHGRMBVZ9LR"       
-	* domain                          =   "acirrustech.com"
-	* region                          =   "us-east-1"
+	* domain                          =   "YOUR_DOMAIN"
+	* region                          =   "YOUR_REGION"
 
 
 
