@@ -33,5 +33,8 @@ It will set a proper backend.tf file for us. Next run (by changing region of cou
 * terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
 
+
+
+
 ### Output
 The output should be similar to this
