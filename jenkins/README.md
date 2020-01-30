@@ -48,4 +48,13 @@ terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
 
 ### Output
-![Output](https://github.com/farrukh90/terraform-aws-jenkins/blob/master/images/output.png)
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/output.png)
+
+
+
+### Known Errors
+When you see below error, please run 
+```
+ssh-keygen      #Enter 4 times
+```
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.png)
