@@ -73,3 +73,5 @@ ssh-keygen      #Enter 4 times
 ---
 ### Error 3
 ![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/TerraforVersionError.png)
+#### When you see above error it means you are using the wrong version of terraform. Please download 0.11.14
+
