@@ -3,7 +3,7 @@ echo $0
 if [ "$0" = "$BASH_SOURCE" ]
 then
    echo "$0: Please source this file."
-   echo "e.g. source ./setenv configurations/
+   echo "e.g. source ./setenv configurations/"
    return 1
 fi
 
