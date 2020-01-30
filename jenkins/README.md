@@ -72,4 +72,4 @@ ssh-keygen      #Enter 4 times
 
 ---
 ### Error 3
-![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/TerraformVersionError.png)
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/TerraforVersionError.png)
