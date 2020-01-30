@@ -53,6 +53,7 @@ terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
 
 ## Known Errors
+---
 ### Error 1
 ![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.JPG)
 #### When you see Above error, please run 
@@ -63,7 +64,7 @@ ssh-keygen      #Enter 4 times
 
 
 
-
+---
 ### Error 2 
 ![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/RegionError.PNG)
 
