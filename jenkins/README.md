@@ -52,9 +52,10 @@ terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 
 
 
-### Known Errors
-When you see below error, please run 
+## Known Errors
+
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.JPG)
+#### When you see Above error, please run 
 ```
 ssh-keygen      #Enter 4 times
 ```
-![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.JPG)
