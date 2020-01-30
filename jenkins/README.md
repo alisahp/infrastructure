@@ -59,3 +59,12 @@ terraform apply -var-file configurations/YOUR_REGION/jenkins.tfvars
 ```
 ssh-keygen      #Enter 4 times
 ```
+
+
+
+
+
+### Error 2 
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/RegionError.png)
+
+### When you see above error it means you gave the wrong region for the bucket. Please check bucket's region
