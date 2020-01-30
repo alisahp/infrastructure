@@ -76,3 +76,10 @@ ssh-keygen      #Enter 4 times
 #### When you see above error it means you are using the wrong version of terraform. Please download 0.11.14
 
 ---
+
+
+### Error 4
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Timeout.png)
+#### When you see above error it means AWS is taking some time to update Route53 entry. It is safe to rerun apply command
+
+---
