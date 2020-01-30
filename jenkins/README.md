@@ -80,6 +80,6 @@ ssh-keygen      #Enter 4 times
 
 ### Error 4
 ![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Timeout.png)
-#### When you see above error it means AWS is taking some time to update Route53 entry. It is safe to rerun apply command
+#### When you see above error it means AWS is taking some time to update Route53 entry. It is safe to rerun apply command. Also verify if you put the proper domain in tfvars file
 
 ---
