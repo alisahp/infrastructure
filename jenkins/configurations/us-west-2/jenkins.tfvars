@@ -16,7 +16,4 @@ s3_tfstate_file                 =   	"jenkins.tfstate"
 instance_type		            =   	"t2.medium"
 key_name	    	            =	    "jenkins"
 user		    	            =	    "centos"
-ssh_key_location	            =	    "/root/.ssh/id_rsa"                                                  
-
-
-
+ssh_key_location	            =	    "/root/.ssh/id_rsa"
