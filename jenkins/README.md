@@ -57,4 +57,4 @@ When you see below error, please run
 ```
 ssh-keygen      #Enter 4 times
 ```
-![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.png)
+![Output](https://github.com/farrukh90/infrastructure/blob/master/jenkins/images/Errors.jpg)
