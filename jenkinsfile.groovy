@@ -1,20 +1,17 @@
 node {
-    stage("Stage1")
+    properties([pipelineTriggers([cron('* * * * *')])])
+    
+    stage("Stage1"){
         echo "Hello World"
     }
-}
-    node {
-    stage("Stage2")
+    stage("Stage2"){
         echo "Hello World"
     }
-}
-    node {
-    stage("Stage3")
+    stage("Stage3"){
         echo "Hello World"
     }
-}
-    node {
-    stage("Stage4")
+    stage("Send Notifation to slack"){
         echo "Hello World"
+        slackSend channel: 'nagios_alerts', message: 'Completed'
     }
 }
